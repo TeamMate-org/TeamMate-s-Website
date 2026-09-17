@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Navbar, Footer, CTA } from './App';
 import { LeadModal } from './components/LeadModal';
-import { UnderConstructionModal } from './components/UnderConstructionModal';
 import { Package, Bell, Inbox, LayoutDashboard, Smartphone, Settings } from 'lucide-react';
 import { EtherealShadow } from './components/ui/etheral-shadow';
 
@@ -25,7 +24,6 @@ function useInView(threshold = 0.15) {
 
 export default function Astrotek() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isUnderConstructionOpen, setIsUnderConstructionOpen] = useState(false);
   const { ref: challengeRef, inView: challengeInView } = useInView();
   const { ref: solutionRef, inView: solutionInView } = useInView();
   const { ref: resultRef, inView: resultInView } = useInView();
@@ -230,13 +228,9 @@ export default function Astrotek() {
       </main>
 
       {/* SECÇÃO 9 — FOOTER */}
-      <Footer onOpenUnderConstruction={() => setIsUnderConstructionOpen(true)} />
+      <Footer />
 
       <LeadModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-      <UnderConstructionModal
-        isOpen={isUnderConstructionOpen}
-        onClose={() => setIsUnderConstructionOpen(false)}
-      />
     </div>
   );
 }

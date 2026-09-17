@@ -6,7 +6,6 @@ import {
 } from 'lucide-react';
 
 import { Navbar, Footer } from './App';
-import { UnderConstructionModal } from './components/UnderConstructionModal';
 import { LeadModal } from './components/LeadModal';
 import { EtherealShadow } from './components/ui/etheral-shadow';
 import { supabase } from './lib/supabase';
@@ -802,7 +801,6 @@ AuditoriaForm.displayName = 'AuditoriaForm';
 /* ─── Page ───────────────────────────────────────────── */
 const Auditoria = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isUnderConstructionOpen, setIsUnderConstructionOpen] = useState(false);
   const formRef = useRef<HTMLElement>(null);
 
   const scrollToForm = () => {
@@ -837,13 +835,9 @@ const Auditoria = () => {
         <AuditoriaForm ref={formRef} />
       </main>
 
-      <Footer onOpenUnderConstruction={() => setIsUnderConstructionOpen(true)} />
+      <Footer />
 
       <LeadModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-      <UnderConstructionModal
-        isOpen={isUnderConstructionOpen}
-        onClose={() => setIsUnderConstructionOpen(false)}
-      />
     </div>
   );
 };

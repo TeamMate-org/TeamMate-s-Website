@@ -9,7 +9,6 @@ import {
 } from 'lucide-react';
 
 import { Navbar, Testimonials, Footer } from './App';
-import { UnderConstructionModal } from './components/UnderConstructionModal';
 import { EtherealShadow } from './components/ui/etheral-shadow';
 import { LeadModal } from './components/LeadModal';
 import { QuizModal } from './components/QuizModal';
@@ -445,7 +444,6 @@ const ContactSection = () => {
 /* ─── Contactos Page ─────────────────────────────────── */
 const Contactos = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isUnderConstructionOpen, setIsUnderConstructionOpen] = useState(false);
 
   useEffect(() => {
     document.title = 'Contactos | TeamMate';
@@ -462,10 +460,9 @@ const Contactos = () => {
         <FAQ />
       </main>
 
-      <Footer onOpenUnderConstruction={() => setIsUnderConstructionOpen(true)} />
+      <Footer />
 
       <LeadModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-      <UnderConstructionModal isOpen={isUnderConstructionOpen} onClose={() => setIsUnderConstructionOpen(false)} />
     </div>
   );
 };

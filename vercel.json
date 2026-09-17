@@ -1,4 +1,16 @@
 {
+  "redirects": [
+    {
+      "source": "/radmate",
+      "destination": "https://getreportmate.com",
+      "statusCode": 301
+    },
+    {
+      "source": "/radmate/",
+      "destination": "https://getreportmate.com",
+      "statusCode": 301
+    }
+  ],
   "rewrites": [
     {
       "source": "/(.*)",

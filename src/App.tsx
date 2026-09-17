@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import {
-  ChevronDown, Menu, Star, ArrowRight, ArrowLeft,
+  ChevronDown, Menu, Star, ArrowRight, ArrowLeft, ArrowUpRight,
   BarChart3, Settings, TrendingDown, Shield, Box,
   Twitter, Instagram, Linkedin, X, Loader2, CheckCircle,
   Fingerprint, Sparkles, Clock, Zap, Blocks, Link, Users,
@@ -11,7 +11,6 @@ import {
 import { EtherealShadow } from './components/ui/etheral-shadow';
 import { LeadModal } from './components/LeadModal';
 import { QuizModal } from './components/QuizModal';
-import { UnderConstructionModal } from './components/UnderConstructionModal';
 
 /* ─── Focus style helper ─────────────────────────────── */
 const focusRing = 'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background';
@@ -829,15 +828,15 @@ const BeforeAfter = () => {
 };
 
 /* ─── About ──────────────────────────────────────────── */
-const About = ({ onOpenUnderConstruction }: { onOpenUnderConstruction: () => void }) => {
+const About = () => {
   const { ref, inView } = useInView();
   return (
     <section id="about" className="py-24 px-6 bg-surface/50" ref={ref}>
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-        <div className={`relative aspect-square rounded-3xl overflow-hidden border border-border bg-surface ${inView ? 'reveal-up' : 'opacity-0'}`}>
+        <div className={`relative aspect-square rounded-3xl overflow-hidden border border-primary/30 bg-surface shadow-[0_0_60px_-15px_rgba(5,102,141,0.5)] ${inView ? 'reveal-up' : 'opacity-0'}`}>
           <img
-            src="/images/RadMate Interface.webp"
-            alt="Interface do RadMate — assistente de IA para relatórios médicos"
+            src="/images/ReportMate Interface.webp"
+            alt="Interface do ReportMate — plataforma de IA que gera relatórios médicos a partir de voz"
             className="object-cover w-full h-full"
             loading="lazy"
           />
@@ -845,11 +844,15 @@ const About = ({ onOpenUnderConstruction }: { onOpenUnderConstruction: () => voi
         </div>
 
         <div>
+          <span className="inline-flex items-center gap-2 px-3.5 py-1.5 mb-6 rounded-full bg-primary/15 border border-primary/30 text-primary text-sm font-medium tracking-wide uppercase">
+            <Sparkles className="w-4 h-4" aria-hidden="true" />
+            O nosso produto principal
+          </span>
           <h2 className="text-4xl md:text-5xl font-display font-semibold mb-6 leading-tight">
-            RadMate — Relatórios instantâneos gerados com IA
+            ReportMate — Relatórios médicos gerados por voz, com IA
           </h2>
           <p className="text-lg text-gray-400 mb-10 leading-relaxed">
-            O RadMate utiliza inteligência artificial para transformar ditado médico em relatórios radiológicos estruturados. Transcreve o áudio, organiza a informação clínica e gera automaticamente um relatório completo, mantendo a estrutura e terminologia médica adequadas.
+            O ReportMate é a plataforma clínica que transforma o ditado médico em relatórios completos e estruturados. Basta falar: a IA transcreve o áudio, organiza a informação clínica e entrega um relatório pronto a rever, com a terminologia e a estrutura que cada especialidade exige. Pensado para clínicas e equipas médicas que querem passar menos tempo a escrever e mais tempo com os doentes.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-6 mb-10">
@@ -869,9 +872,16 @@ const About = ({ onOpenUnderConstruction }: { onOpenUnderConstruction: () => voi
           </div>
 
           <div className="relative group inline-flex">
-            <button onClick={onOpenUnderConstruction} className={`relative flex items-center justify-center px-8 py-3.5 bg-primary hover:bg-primary-hover text-white font-medium rounded-xl transition-all duration-300 cursor-pointer ${focusRing}`}>
-              Conhecer Software
-            </button>
+            <a
+              href="https://getreportmate.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`relative flex items-center justify-center gap-2 px-8 py-4 bg-primary hover:bg-primary-hover active:scale-95 md:active:scale-100 text-white text-lg font-display font-semibold rounded-xl shadow-[0_0_30px_-5px_rgba(5,102,141,0.6)] hover:shadow-[0_0_40px_-5px_rgba(5,102,141,0.8)] transition-all duration-300 cursor-pointer ${focusRing}`}
+            >
+              Conhecer o ReportMate
+              <ArrowUpRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
+              <span className="sr-only">(abre numa nova aba)</span>
+            </a>
           </div>
         </div>
       </div>
@@ -1541,7 +1551,7 @@ export const CTA = ({
 };
 
 /* ─── Footer ─────────────────────────────────────────── */
-export const Footer = ({ onOpenUnderConstruction }: { onOpenUnderConstruction: () => void }) => {
+export const Footer = () => {
   const scrollTo = (href: string) => {
     const targetId = href.startsWith('/#') ? href.substring(1) : href;
     if (targetId === '#') return false;
@@ -1555,7 +1565,7 @@ export const Footer = ({ onOpenUnderConstruction }: { onOpenUnderConstruction: (
     return false;
   };
 
-  const footerCols = [
+  const footerCols: { title: string; links: { label: string; href: string; external?: boolean }[] }[] = [
     {
       title: 'Navegação',
       links: [
@@ -1569,7 +1579,7 @@ export const Footer = ({ onOpenUnderConstruction }: { onOpenUnderConstruction: (
       links: [
         { label: 'FAQs', href: '/#faq' },
         { label: 'Contacto', href: '/contactos' },
-        { label: 'RadMate', href: '/radmate' },
+        { label: 'ReportMate', href: 'https://getreportmate.com', external: true },
       ],
     },
     {
@@ -1609,18 +1619,18 @@ export const Footer = ({ onOpenUnderConstruction }: { onOpenUnderConstruction: (
                     <a
                       key={link.label}
                       href={link.href}
-                      onClick={(e) => {
-                        if (link.label === 'RadMate') {
-                          e.preventDefault();
-                          onOpenUnderConstruction();
-                        } else {
-                          const handled = scrollTo(link.href);
-                          if (handled) e.preventDefault();
-                        }
-                      }}
+                      {...(link.external
+                        ? { target: '_blank', rel: 'noopener noreferrer' }
+                        : {
+                            onClick: (e: React.MouseEvent<HTMLAnchorElement>) => {
+                              const handled = scrollTo(link.href);
+                              if (handled) e.preventDefault();
+                            },
+                          })}
                       className={`hover:text-white transition-colors duration-200 cursor-pointer ${focusRing} rounded`}
                     >
                       {link.label}
+                      {link.external && <span className="sr-only"> (abre numa nova aba)</span>}
                     </a>
                   ))}
                 </div>
@@ -1659,7 +1669,6 @@ export const Footer = ({ onOpenUnderConstruction }: { onOpenUnderConstruction: (
 export default function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isQuizModalOpen, setIsQuizModalOpen] = useState(false);
-  const [isUnderConstructionOpen, setIsUnderConstructionOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white selection:bg-primary/30">
@@ -1673,7 +1682,7 @@ export default function App() {
         <Features />
         <BeforeAfter />
         <Testimonials />
-        <About onOpenUnderConstruction={() => setIsUnderConstructionOpen(true)} />
+        <About />
         <Portfolio />
         <Products />
         <Process />
@@ -1682,16 +1691,12 @@ export default function App() {
         <FAQ />
         <CTA onOpenModal={() => setIsModalOpen(true)} />
       </main>
-      <Footer onOpenUnderConstruction={() => setIsUnderConstructionOpen(true)} />
+      <Footer />
       <LeadModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
       <QuizModal
         isOpen={isQuizModalOpen}
         onClose={() => setIsQuizModalOpen(false)}
         onOpenLeadModal={() => setIsModalOpen(true)}
-      />
-      <UnderConstructionModal
-        isOpen={isUnderConstructionOpen}
-        onClose={() => setIsUnderConstructionOpen(false)}
       />
     </div>
   );

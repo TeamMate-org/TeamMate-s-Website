@@ -1,7 +1,6 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
-import RadMate from './RadMate';
 import Contactos from './Contactos';
 import Auditoria from './Auditoria';
 import Astrotek from './Astrotek';
@@ -14,7 +13,7 @@ const path = window.location.pathname;
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    {path === '/radmate' ? <RadMate /> : path === '/contactos' ? <Contactos /> : path === '/auditoria' ? <Auditoria /> : path === '/astrotek' ? <Astrotek /> : path === '/donabarba' ? <DonaBarba /> : <App />}
+    {path === '/contactos' ? <Contactos /> : path === '/auditoria' ? <Auditoria /> : path === '/astrotek' ? <Astrotek /> : path === '/donabarba' ? <DonaBarba /> : <App />}
     <Analytics />
     <SpeedInsights />
   </StrictMode>,
