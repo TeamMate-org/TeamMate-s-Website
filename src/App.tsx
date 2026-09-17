@@ -1082,185 +1082,77 @@ const Products = () => {
 
 
 /* ─── Testimonials ───────────────────────────────────── */
-const TESTIMONIALS = [
-  {
-    id: 1,
-    quote: "Antes da TeamMate, o nosso processo de onboarding de clientes demorava 3 dias e envolvia 4 pessoas. Hoje é automático, demora 2 horas e ninguém precisa de tocar em nada. Foi a melhor decisão que tomámos este ano.",
-    name: "Ricardo Fernandes",
-    role: "CEO, Growtify",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150&auto=format&fit=crop",
+export type Testimonial = {
+  quote: string;
+  name: string;
+  role: string;
+  logo: string;
+  logoAlt: string;
+  invertLogo?: boolean;
+};
+
+export const TESTIMONIALS = {
+  donabarba: {
+    quote: "Antes passávamos mais tempo a gerir marcações do que a cortar cabelo. Havia sobreposições no WhatsApp, no telefone, ao balcão — e ninguém sabia bem o que estava marcado. Com o sistema da TeamMate, os clientes marcam sozinhos 24/7, cada barbeiro gere a sua agenda sem conflitos, e temos uma visão clara da faturação em tempo real. Já não imagino trabalhar sem isto.",
+    name: "Pedro Miranda",
+    role: "CEO / Barbeiro, DonaBarba",
+    logo: "/images/DonaBarba-logo.png",
+    logoAlt: "Logo DonaBarba",
+    invertLogo: true,
   },
-  {
-    id: 2,
-    quote: "Éramos cépticos em relação à IA. Achámos que ia ser complicado, caro e que nunca ia encaixar no nosso negócio. A TeamMate provou que estávamos errados em menos de 3 semanas. A nossa equipa de vendas finalmente foca-se só em vender.",
-    name: "Mariana Costa",
-    role: "Diretora Comercial, Novalink",
-    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=150&auto=format&fit=crop",
+  astrotek: {
+    quote: "Recebíamos pedidos de reparação por todos os canais possíveis e perdíamos horas por semana a organizar tudo à mão. A TeamMate construiu-nos uma plataforma que centralizou tudo — pedidos, stock, faturação e comunicação com o cliente — em duas semanas. Hoje os clientes sabem sempre em que ponto está a reparação sem precisar de ligar, e nós focamo-nos no que sabemos fazer.",
+    name: "Luís Veloso",
+    role: "CEO / Técnico, Astrotek",
+    logo: "/images/Astrotek-logo.png",
+    logoAlt: "Logo Astrotek",
   },
-  {
-    id: 3,
-    quote: "O que mais me surpreendeu não foi a automação em si, foi o processo. Explicámos como trabalhamos, eles ouviram de verdade e construíram algo que parece feito especificamente para nós — porque foi.",
-    name: "Tomás Guerreiro",
-    role: "COO, Stackmove",
-    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=150&auto=format&fit=crop",
-  },
-];
+} satisfies Record<string, Testimonial>;
+
+export const TestimonialLogo = ({ testimonial, className = '' }: { testimonial: Testimonial; className?: string }) => (
+  <div className={`h-16 min-w-16 px-5 flex items-center justify-center rounded-2xl bg-white/[0.04] border border-white/10 flex-shrink-0 ${className}`}>
+    <img
+      src={testimonial.logo}
+      alt={testimonial.logoAlt}
+      className={`max-h-10 w-auto object-contain ${testimonial.invertLogo ? 'brightness-0 invert' : ''}`}
+      loading="lazy"
+    />
+  </div>
+);
 
 export const Testimonials = () => {
   const { ref, inView } = useInView();
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [exitX, setExitX] = useState<number>(0);
-  const autoRef = useRef<ReturnType<typeof setInterval> | null>(null);
-  const total = TESTIMONIALS.length;
-
-  const next = useCallback(() => {
-    setExitX(-300);
-    setCurrentIndex(prev => (prev + 1) % total);
-  }, [total]);
-
-  const prev = useCallback(() => {
-    setExitX(300);
-    setCurrentIndex(prev => (prev - 1 + total) % total);
-  }, [total]);
-
-  const resetAuto = useCallback(() => {
-    if (autoRef.current) clearInterval(autoRef.current);
-    autoRef.current = setInterval(next, 5000);
-  }, [next]);
-
-  useEffect(() => {
-    resetAuto();
-    return () => { if (autoRef.current) clearInterval(autoRef.current); };
-  }, [resetAuto]);
-
-  const handleDragEnd = (_: unknown, info: { offset: { x: number }; velocity: { x: number } }) => {
-    const power = Math.abs(info.offset.x) * info.velocity.x;
-    if (power < -8000) { resetAuto(); next(); }
-    else if (power > 8000) { resetAuto(); prev(); }
-  };
 
   return (
     <section id="testimonials" className="py-24 px-6 bg-surface/50" aria-label="Testemunhos" ref={ref}>
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div className="max-w-6xl mx-auto">
 
-        {/* Left column */}
-        <div className={inView ? 'reveal-up' : 'opacity-0'}>
+        <div className={`text-center mb-16 ${inView ? 'reveal-up' : 'opacity-0'}`}>
           <h2 className="text-4xl md:text-5xl font-display font-semibold leading-tight mb-4">
             Empresas que pararam de perder tempo
           </h2>
-          <p className="text-gray-400 text-lg leading-relaxed mb-16">
+          <p className="text-gray-400 text-lg leading-relaxed max-w-2xl mx-auto">
             Não pedimos que confies em nós. Pedimos que ouças quem já confiou.
           </p>
-          <div className="flex gap-12">
-            <div>
-              <p className="text-5xl font-display font-bold text-primary mb-2" aria-label="90 por cento">90%</p>
-              <p className="text-sm text-gray-500 uppercase tracking-wider mb-1">Aumento de</p>
-              <p className="font-medium">Eficiência Operacional</p>
-            </div>
-            <div>
-              <p className="text-5xl font-display font-bold text-primary mb-2" aria-label="84 por cento">84%</p>
-              <p className="text-sm text-gray-500 uppercase tracking-wider mb-1">Redução de</p>
-              <p className="font-medium">Custos Manuais</p>
-            </div>
-          </div>
         </div>
 
-        {/* Right column — stacked card carousel */}
-        <div className={`relative flex items-center justify-center min-h-[420px] w-full ${inView ? 'reveal-up' : 'opacity-0'}`} style={{ animationDelay: '200ms' }}>
-
-          {/* Card stack */}
-          <div className="relative w-full max-w-lg flex items-center justify-center" style={{ height: '340px' }}>
-            <AnimatePresence initial={false}>
-              {TESTIMONIALS.map((t, index) => {
-                const position = (index - currentIndex + total) % total;
-                const isVisible = position < 3;
-                if (!isVisible) return null;
-
-                return (
-                  <motion.div
-                    key={t.id}
-                    style={{ zIndex: total - position }}
-                    initial={{ scale: 0.92, opacity: 0, y: 20 }}
-                    animate={{
-                      scale: 1 - position * 0.05,
-                      y: position * 12,
-                      opacity: 1 - position * 0.18,
-                      x: 0,
-                    }}
-                    exit={{
-                      x: exitX,
-                      opacity: 0,
-                      scale: 0.9,
-                      transition: { duration: 0.22 },
-                    }}
-                    transition={{
-                      type: 'spring',
-                      stiffness: 280,
-                      damping: 28,
-                    }}
-                    drag={position === 0 ? 'x' : false}
-                    dragConstraints={{ left: 0, right: 0 }}
-                    onDragEnd={handleDragEnd}
-                    className="absolute w-full"
-                  >
-                    <div className="relative bg-[#111318] border border-white/10 rounded-2xl p-8 shadow-2xl" style={{ cursor: position === 0 ? 'grab' : 'default' }}>
-                      {/* Arrows inside front card only */}
-                      {position === 0 && (
-                        <>
-                          <button
-                            onClick={(e) => { e.stopPropagation(); resetAuto(); prev(); }}
-                            aria-label="Testemunho anterior"
-                            className={`absolute top-4 left-4 z-10 w-8 h-8 flex items-center justify-center rounded-full text-white/40 hover:text-white hover:bg-white/10 transition-all duration-200 cursor-pointer text-lg ${focusRing}`}
-                          >
-                            ←
-                          </button>
-                          <button
-                            onClick={(e) => { e.stopPropagation(); resetAuto(); next(); }}
-                            aria-label="Próximo testemunho"
-                            className={`absolute top-4 right-4 z-10 w-8 h-8 flex items-center justify-center rounded-full text-white/40 hover:text-white hover:bg-white/10 transition-all duration-200 cursor-pointer text-lg ${focusRing}`}
-                          >
-                            →
-                          </button>
-                        </>
-                      )}
-                      <div className="flex flex-col items-center text-center gap-5">
-                        <img
-                          src={t.avatar}
-                          alt={`Foto de ${t.name}`}
-                          className="w-16 h-16 rounded-full object-cover border-2 border-white/10 flex-shrink-0"
-                        />
-                        <div className="space-y-2">
-                          <h3 className="text-lg font-display font-semibold text-white">{t.name}</h3>
-                          <p className="text-primary text-xs font-medium uppercase tracking-wider">{t.role}</p>
-                        </div>
-                        <p className="text-gray-300 text-base leading-relaxed italic max-w-sm">
-                          &ldquo;{t.quote}&rdquo;
-                        </p>
-                      </div>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </AnimatePresence>
-          </div>
-
-          {/* Dot indicators */}
-          <div className="absolute -bottom-10 md:-bottom-2 left-0 right-0 flex justify-center gap-2" role="tablist" aria-label="Navegar testemunhos">
-            {TESTIMONIALS.map((_, i) => (
-              <button
-                key={i}
-                role="tab"
-                aria-selected={i === currentIndex}
-                aria-label={`Testemunho ${i + 1}`}
-                onClick={() => {
-                  setExitX(i > currentIndex ? -300 : 300);
-                  setCurrentIndex(i);
-                  resetAuto();
-                }}
-                className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${i === currentIndex ? 'bg-primary w-5' : 'bg-white/20 w-2 hover:bg-white/40'}`}
-              />
-            ))}
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {[TESTIMONIALS.donabarba, TESTIMONIALS.astrotek].map((t, i) => (
+            <figure
+              key={t.name}
+              className={`flex flex-col items-center text-center gap-6 bg-[#111318] border border-white/10 rounded-2xl p-8 md:p-10 shadow-2xl ${inView ? 'reveal-up' : 'opacity-0'}`}
+              style={{ animationDelay: `${i * 150 + 200}ms` }}
+            >
+              <TestimonialLogo testimonial={t} />
+              <figcaption className="space-y-2">
+                <h3 className="text-lg font-display font-semibold text-white">{t.name}</h3>
+                <p className="text-primary text-xs font-medium uppercase tracking-wider">{t.role}</p>
+              </figcaption>
+              <blockquote className="text-gray-300 text-base leading-relaxed italic">
+                &ldquo;{t.quote}&rdquo;
+              </blockquote>
+            </figure>
+          ))}
         </div>
 
       </div>

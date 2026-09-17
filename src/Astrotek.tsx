@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Navbar, Footer, CTA } from './App';
+import { Navbar, Footer, CTA, TESTIMONIALS, TestimonialLogo } from './App';
 import { LeadModal } from './components/LeadModal';
 import { Package, Bell, Inbox, LayoutDashboard, Smartphone, Settings } from 'lucide-react';
 import { EtherealShadow } from './components/ui/etheral-shadow';
@@ -21,6 +21,8 @@ function useInView(threshold = 0.15) {
   }, [threshold]);
   return { ref, inView };
 }
+
+const testimonial = TESTIMONIALS.astrotek;
 
 export default function Astrotek() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -195,7 +197,7 @@ export default function Astrotek() {
             </div>
             
             <p className={`text-xl md:text-2xl text-center text-gray-300 max-w-4xl mx-auto font-medium leading-relaxed ${resultInView ? 'reveal-up' : 'opacity-0'}`} style={{ animationDelay: '600ms' }}>
-              "A Astrotek passou de um negócio gerido por mensagens e notas dispersas para uma operação centralizada, organizada e escalável — sem contratar mais ninguém."
+              A Astrotek passou de um negócio gerido por mensagens e notas dispersas para uma operação centralizada, organizada e escalável — sem contratar mais ninguém.
             </p>
           </div>
         </section>
@@ -207,12 +209,12 @@ export default function Astrotek() {
               <span className="text-3xl text-primary font-serif leading-none mt-2">"</span>
             </div>
             <p className="text-xl md:text-2xl text-white font-medium leading-relaxed mb-10 italic">
-              "Antes perdíamos horas por semana só a gerir pedidos e a responder a clientes. Agora o sistema trata de tudo sozinho e nós focamo-nos no que sabemos fazer — reparar equipamentos. Foi a melhor decisão que tomámos para o negócio."
+              &ldquo;{testimonial.quote}&rdquo;
             </p>
             <div className="flex flex-col items-center">
-              <img src="https://via.placeholder.com/150x150/111111/444444?text=Carlos" alt="Carlos Mendes" className="w-16 h-16 rounded-full mb-4 object-cover border-2 border-primary/30" />
-              <h4 className="text-lg font-display font-semibold">Carlos Mendes</h4>
-              <p className="text-gray-400 text-sm mt-1">Fundador, Astrotek</p>
+              <TestimonialLogo testimonial={testimonial} className="mb-4" />
+              <h4 className="text-lg font-display font-semibold">{testimonial.name}</h4>
+              <p className="text-gray-400 text-sm mt-1">{testimonial.role}</p>
             </div>
           </div>
         </section>

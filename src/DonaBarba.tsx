@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Navbar, Footer, CTA } from './App';
+import { Navbar, Footer, CTA, TESTIMONIALS, TestimonialLogo } from './App';
 import { LeadModal } from './components/LeadModal';
 import { Settings, LayoutDashboard, CalendarRange, Package, BarChart3, Smartphone, Users } from 'lucide-react';
 import { EtherealShadow } from './components/ui/etheral-shadow';
@@ -18,6 +18,8 @@ function useInView(threshold = 0.15) {
   }, [threshold]);
   return { ref, inView };
 }
+
+const testimonial = TESTIMONIALS.donabarba;
 
 export default function DonaBarba() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -192,7 +194,7 @@ export default function DonaBarba() {
             </div>
             
             <p className={`text-xl md:text-2xl text-center text-gray-300 max-w-4xl mx-auto font-medium leading-relaxed ${resultInView ? 'reveal-up' : 'opacity-0'}`} style={{ animationDelay: '600ms' }}>
-              "A DonaBarba passou de uma gestão caótica por WhatsApp e telefone para um sistema profissional, organizado e escalável — com total visibilidade sobre o negócio em tempo real."
+              A DonaBarba passou de uma gestão caótica por WhatsApp e telefone para um sistema profissional, organizado e escalável — com total visibilidade sobre o negócio em tempo real.
             </p>
           </div>
         </section>
@@ -204,12 +206,12 @@ export default function DonaBarba() {
               <span className="text-3xl text-primary font-serif leading-none mt-2">"</span>
             </div>
             <p className="text-xl md:text-2xl text-white font-medium leading-relaxed mb-10 italic">
-              "Antes passávamos mais tempo a gerir marcações do que a cortar cabelo. Agora o sistema trata de tudo — os clientes marcam sozinhos, recebemos as confirmações automaticamente e temos sempre uma visão clara do que se passa no negócio. Não imagino trabalhar sem isto."
+              &ldquo;{testimonial.quote}&rdquo;
             </p>
             <div className="flex flex-col items-center">
-              <img src="https://via.placeholder.com/150x150/111111/444444?text=Ricardo" alt="Ricardo Miranda" className="w-16 h-16 rounded-full mb-4 object-cover border-2 border-primary/30" />
-              <h4 className="text-lg font-display font-semibold">Ricardo Miranda</h4>
-              <p className="text-gray-400 text-sm mt-1">Fundador, DonaBarba</p>
+              <TestimonialLogo testimonial={testimonial} className="mb-4" />
+              <h4 className="text-lg font-display font-semibold">{testimonial.name}</h4>
+              <p className="text-gray-400 text-sm mt-1">{testimonial.role}</p>
             </div>
           </div>
         </section>
