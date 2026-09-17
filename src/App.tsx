@@ -4,8 +4,8 @@ import {
   ChevronDown, Menu, Star, ArrowRight, ArrowLeft, ArrowUpRight,
   BarChart3, Settings, TrendingDown, Shield, Box,
   Twitter, Instagram, Linkedin, X, Loader2, CheckCircle,
-  Fingerprint, Sparkles, Clock, Zap, Blocks, Link, Users,
-  Mic, Brain, Mail, UserCheck, FileText, Megaphone, Cpu, HeadphonesIcon, BatteryLow
+  Fingerprint, Sparkles, Clock, Blocks, Link, Users,
+  Mic, Brain, Mail, UserCheck, FileText, Megaphone, Cpu, HeadphonesIcon
 } from 'lucide-react';
 
 import { EtherealShadow } from './components/ui/etheral-shadow';
@@ -56,7 +56,7 @@ export const Navbar = ({ onOpenModal, hideNavLinks, ctaText = 'Agendar Conversa'
   const navLinks = [
     { label: 'Serviços', href: '/#cases' },
     { label: 'Processo', href: '/#process' },
-    { label: 'Portfólio', href: '/#portfolio' },
+    { label: 'Portfólio', href: '/portfolio' },
     { label: 'Testemunhos', href: '/#testimonials' },
     { label: 'Contacto', href: '/contactos' },
   ];
@@ -64,7 +64,7 @@ export const Navbar = ({ onOpenModal, hideNavLinks, ctaText = 'Agendar Conversa'
   useEffect(() => {
     if (window.location.pathname !== '/') return;
 
-    const navSectionIds = ['cases', 'process', 'portfolio', 'testimonials'];
+    const navSectionIds = ['cases', 'process', 'testimonials'];
 
     const handleScroll = () => {
       let current = '';
@@ -126,7 +126,9 @@ export const Navbar = ({ onOpenModal, hideNavLinks, ctaText = 'Agendar Conversa'
               <ul className="hidden md:flex items-center gap-8" role="list">
                 {navLinks.map((link) => {
                   const targetId = link.href.startsWith('/#') ? link.href.substring(2) : '';
-                  const isActive = activeSection === targetId && targetId !== '';
+                  const isActive = targetId !== ''
+                    ? activeSection === targetId
+                    : link.href === '/portfolio' && window.location.pathname === '/portfolio';
 
                   return (
                     <li key={link.label}>
@@ -849,27 +851,26 @@ const About = () => {
             O nosso produto principal
           </span>
           <h2 className="text-4xl md:text-5xl font-display font-semibold mb-6 leading-tight">
-            ReportMate — Relatórios médicos gerados por voz, com IA
+            ReportMate — IA para transcrição médica em imagiologia
           </h2>
-          <p className="text-lg text-gray-400 mb-10 leading-relaxed">
-            O ReportMate é a plataforma clínica que transforma o ditado médico em relatórios completos e estruturados. Basta falar: a IA transcreve o áudio, organiza a informação clínica e entrega um relatório pronto a rever, com a terminologia e a estrutura que cada especialidade exige. Pensado para clínicas e equipas médicas que querem passar menos tempo a escrever e mais tempo com os doentes.
+          <p className="text-lg text-gray-400 mb-8 leading-relaxed">
+            Ditado por voz e IA clínica para médicos imagiologistas em Portugal. O médico dita em linguagem natural, a IA estrutura o relatório e sinaliza inconsistências antes da assinatura. Vocabulário clínico dedicado, mais de 20 especialidades cobertas, RGPD-compliant e dados alojados na União Europeia.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-6 mb-10">
+          <ul className="flex flex-col gap-4 mb-10" role="list">
             {[
-              { label: 'Relatórios em segundos', Icon: FileText },
-              { label: 'Menos cansaço acumulado', Icon: BatteryLow },
+              { label: 'Ditado natural em português europeu, com vocabulário clínico dedicado', Icon: Mic },
+              { label: 'IA estrutura o relatório e sinaliza inconsistências antes de assinares', Icon: Sparkles },
+              { label: 'Alojado na UE, RGPD-compliant, sem instalação nem hardware', Icon: Shield },
             ].map((item) => (
-              <div key={item.label} className="flex items-center gap-4 p-4 rounded-xl bg-surface border border-border flex-1">
-                <div className="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center border border-white/5" aria-hidden="true">
+              <li key={item.label} className="flex items-center gap-4">
+                <div className="w-10 h-10 flex-shrink-0 rounded-lg bg-primary/10 flex items-center justify-center border border-primary/20" aria-hidden="true">
                   <item.Icon className="w-5 h-5 text-primary" />
                 </div>
-                <div>
-                  <p className="font-medium">{item.label}</p>
-                </div>
-              </div>
+                <p className="font-medium">{item.label}</p>
+              </li>
             ))}
-          </div>
+          </ul>
 
           <div className="relative group inline-flex">
             <a
@@ -889,6 +890,66 @@ const About = () => {
   );
 };
 
+/* ─── Case Study Card (shared: homepage + /portfolio) ─── */
+export type CaseStudy = {
+  title: string;
+  description: string;
+  image: string;
+  imageAlt: string;
+  href: string;
+  brandColor: string;
+  invertLogo?: boolean;
+};
+
+export const caseStudies: CaseStudy[] = [
+  {
+    title: 'DonaBarba',
+    description: 'Sistema completo de marcações online, gestão de barbeiros, stock e faturamento — para que a equipa se foque nos clientes.',
+    image: '/images/DonaBarba-logo.png',
+    imageAlt: 'Logo DonaBarba',
+    href: '/donabarba',
+    brandColor: '#7B5329',
+    invertLogo: true,
+  },
+  {
+    title: 'Software Gestão Astrotek',
+    description: 'Sistema centralizado para gestão de pedidos de reparação, stock e faturamento, eliminando processos manuais.',
+    image: '/images/Astrotek-logo.png',
+    imageAlt: 'Logo Astrotek',
+    href: '/astrotek',
+    brandColor: '#1F8442',
+  },
+];
+
+interface CaseStudyCardProps {
+  study: CaseStudy;
+  ctaLabel: string;
+  inView: boolean;
+  delayMs?: number;
+}
+
+export const CaseStudyCard: React.FC<CaseStudyCardProps> = ({ study, ctaLabel, inView, delayMs = 0 }) => (
+  <div className={`group relative flex flex-col overflow-hidden rounded-3xl bg-surface border border-border hover:border-white/20 transition-all duration-300 ${inView ? 'reveal-up' : 'opacity-0'}`} style={{ animationDelay: `${delayMs}ms` }}>
+    <div className="aspect-[16/10] w-full overflow-hidden border-b border-white/5 flex items-center justify-center" style={{ backgroundColor: study.brandColor }}>
+      <img
+        src={study.image}
+        alt={study.imageAlt}
+        className={`max-h-[50%] max-w-[60%] object-contain group-hover:scale-105 transition-transform duration-700 ${study.invertLogo ? 'brightness-0 invert' : ''}`}
+        loading="lazy"
+      />
+    </div>
+    <div className="p-8 flex flex-col flex-1">
+      <h3 className="text-2xl font-display font-semibold mb-3">{study.title}</h3>
+      <p className="text-gray-400 leading-relaxed mb-6 flex-1">
+        {study.description}
+      </p>
+      <a href={study.href} className={`inline-flex items-center justify-center px-6 py-3 w-max border border-white/15 hover:bg-white/5 active:bg-white/5 active:scale-95 text-white font-medium rounded-xl transition-all duration-300 ${focusRing}`}>
+        {ctaLabel}
+      </a>
+    </div>
+  </div>
+);
+
 /* ─── Portfolio ────────────────────────────────────────── */
 const Portfolio = () => {
   const { ref, inView } = useInView();
@@ -902,37 +963,18 @@ const Portfolio = () => {
           </h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* DonaBarba Card */}
-          <div className={`group relative flex flex-col overflow-hidden rounded-3xl bg-surface border border-border hover:border-white/20 transition-all duration-300 ${inView ? 'reveal-up' : 'opacity-0'}`} style={{ animationDelay: '100ms' }}>
-            <div className="aspect-[4/3] w-full overflow-hidden border-b border-white/5">
-              <img src="/images/DonaBarbaCaseStudie.webp" alt="DonaBarba" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
-            </div>
-            <div className="p-8 flex flex-col flex-1">
-              <h3 className="text-2xl font-display font-semibold mb-3">DonaBarba</h3>
-              <p className="text-gray-400 leading-relaxed mb-6 flex-1">
-                Sistema completo de marcações online, gestão de barbeiros, stock e faturamento — para que a equipa se foque nos clientes.
-              </p>
-              <a href="/donabarba" className={`inline-flex items-center justify-center px-6 py-3 w-max border border-white/15 hover:bg-white/5 active:bg-white/5 active:scale-95 text-white font-medium rounded-xl transition-all duration-300 ${focusRing}`}>
-                Ver Caso de Estudo
-              </a>
-            </div>
-          </div>
-
-          {/* Astrotek Card */}
-          <div className={`group relative flex flex-col overflow-hidden rounded-3xl bg-surface border border-border hover:border-white/20 transition-all duration-300 ${inView ? 'reveal-up' : 'opacity-0'}`} style={{ animationDelay: '200ms' }}>
-            <div className="aspect-[4/3] w-full overflow-hidden border-b border-white/5">
-              <img src="/images/AstroTekHero.webp" alt="Software Gestão Astrotek" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
-            </div>
-            <div className="p-8 flex flex-col flex-1">
-              <h3 className="text-2xl font-display font-semibold mb-3">Software Gestão Astrotek</h3>
-              <p className="text-gray-400 leading-relaxed mb-6 flex-1">
-                Sistema centralizado para gestão de pedidos de reparação, stock e faturamento, eliminando processos manuais.
-              </p>
-              <a href="/astrotek" className={`inline-flex items-center justify-center px-6 py-3 w-max border border-white/15 hover:bg-white/5 active:bg-white/5 active:scale-95 text-white font-medium rounded-xl transition-all duration-300 ${focusRing}`}>
-                Ver Caso de Estudo
-              </a>
-            </div>
-          </div>
+          {caseStudies.map((study, i) => (
+            <CaseStudyCard key={study.href} study={study} ctaLabel="Ver Caso de Estudo" inView={inView} delayMs={(i + 1) * 100} />
+          ))}
+        </div>
+        <div className={`mt-12 flex justify-center ${inView ? 'reveal-up' : 'opacity-0'}`} style={{ animationDelay: '300ms' }}>
+          <a
+            href="/portfolio"
+            className={`group inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary hover:bg-primary-hover active:scale-95 md:active:scale-100 text-white text-lg font-display font-semibold rounded-xl shadow-[0_0_30px_-5px_rgba(5,102,141,0.6)] hover:shadow-[0_0_40px_-5px_rgba(5,102,141,0.8)] transition-all duration-300 cursor-pointer ${focusRing}`}
+          >
+            Ver portfólio completo
+            <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true" />
+          </a>
         </div>
       </div>
     </section>
@@ -1554,7 +1596,7 @@ export const CTA = ({
 export const Footer = () => {
   const scrollTo = (href: string) => {
     const targetId = href.startsWith('/#') ? href.substring(1) : href;
-    if (targetId === '#') return false;
+    if (!targetId.startsWith('#') || targetId === '#') return false;
     if (window.location.pathname === '/') {
       const target = document.querySelector(targetId);
       if (target) {
@@ -1571,6 +1613,7 @@ export const Footer = () => {
       links: [
         { label: 'Serviços', href: '/#cases' },
         { label: 'Processo', href: '/#process' },
+        { label: 'Portfólio', href: '/portfolio' },
         { label: 'Testemunhos', href: '/#testimonials' },
       ],
     },
