@@ -9,6 +9,8 @@
   --color-surface-hover: #1a1a1a;
   --color-primary: #05668d;
   --color-primary-hover: #045271;
+  /* Texto secundário em primary sobre fundos escuros (≥4.5:1 de #0a0a0a a #1a1a1a) */
+  --color-primary-text: #2b95c3;
   --color-text-main: #ffffff;
   --color-text-muted: #a1a1aa;
   --color-border: #262626;
@@ -20,6 +22,7 @@
   --color-surface-hover: #f1f3f5;
   --color-primary: #06658d;
   --color-primary-hover: #055070;
+  --color-primary-text: #06658d;
   --color-text-main: #1a1a2e;
   --color-text-muted: #475569;
   --color-border: #e2e8f0;
@@ -228,6 +231,7 @@ button {
 .astrotek-theme {
   --color-primary: #00bb2d;
   --color-primary-hover: #009924;
+  --color-primary-text: #00bb2d;
   --color-background: #0a0a0a;
   --color-surface: #111111;
   --color-surface-hover: #1a1a1a;
@@ -239,6 +243,7 @@ button {
 .donabarba-theme {
   --color-primary: #996935;
   --color-primary-hover: #7b5329;
+  --color-primary-text: #b07a42;
   --color-background: #0a0a0a;
   --color-surface: #111111;
   --color-surface-hover: #1a1a1a;

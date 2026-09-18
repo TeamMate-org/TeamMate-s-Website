@@ -71,7 +71,7 @@ const FAQ = () => {
     <section id="faq" className="py-24 px-6 bg-surface/30" ref={ref}>
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16">
         <div className={`lg:col-span-5 ${inView ? 'reveal-up' : 'opacity-0'}`}>
-          <p className="text-primary font-medium text-sm tracking-wide uppercase mb-3">FAQs</p>
+          <p className="text-primary-text font-medium text-sm tracking-wide uppercase mb-3">FAQs</p>
           <h2 className="text-4xl md:text-5xl font-display font-semibold mb-6 leading-tight">Perguntas Frequentes</h2>
           <p className="text-gray-400 text-lg mb-10 leading-relaxed">
             Tens dúvidas sobre como a IA pode transformar o teu negócio? Encontre as respostas abaixo ou contacta-nos diretamente.
@@ -194,7 +194,7 @@ const ContactSection = () => {
 
         {/* Left column */}
         <div className={inView ? 'reveal-up' : 'opacity-0'}>
-          <p className="text-primary font-medium text-sm tracking-wide uppercase mb-3">Contactos</p>
+          <p className="text-primary-text font-medium text-sm tracking-wide uppercase mb-3">Contactos</p>
           <h2 className="text-4xl md:text-5xl font-display font-semibold mb-6 leading-tight">
             Fala connosco. Estamos prontos para te ouvir.
           </h2>
@@ -230,7 +230,7 @@ const ContactSection = () => {
 
             <div className="grid grid-cols-1 gap-6">
               <div className="flex flex-col gap-2">
-                <label className="text-sm font-medium text-gray-300">Nome completo <span className="text-primary">*</span></label>
+                <label className="text-sm font-medium text-gray-300">Nome completo <span className="text-primary-text">*</span></label>
                 <input
                   type="text"
                   placeholder="O teu nome"
@@ -241,7 +241,7 @@ const ContactSection = () => {
               </div>
 
               <div className="flex flex-col gap-2">
-                <label className="text-sm font-medium text-gray-300">Email <span className="text-primary">*</span></label>
+                <label className="text-sm font-medium text-gray-300">Email <span className="text-primary-text">*</span></label>
                 <input
                   type="email"
                   placeholder="O teu email"
@@ -263,7 +263,7 @@ const ContactSection = () => {
               </div>
 
               <div className="flex flex-col gap-2">
-                <label className="text-sm font-medium text-gray-300">Assunto <span className="text-primary">*</span></label>
+                <label className="text-sm font-medium text-gray-300">Assunto <span className="text-primary-text">*</span></label>
                 <div className="relative">
                   <select
                     value={formData.assunto}
@@ -283,7 +283,7 @@ const ContactSection = () => {
               </div>
 
               <div className="flex flex-col gap-2">
-                <label className="text-sm font-medium text-gray-300">Mensagem <span className="text-primary">*</span></label>
+                <label className="text-sm font-medium text-gray-300">Mensagem <span className="text-primary-text">*</span></label>
                 <textarea
                   placeholder="Escreve aqui a tua mensagem..."
                   value={formData.mensagem}

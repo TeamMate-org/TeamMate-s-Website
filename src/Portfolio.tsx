@@ -71,7 +71,7 @@ export default function Portfolio() {
                 />
               </div>
               <div className="p-8 md:p-12 flex flex-col justify-center items-start">
-                <span className="inline-flex items-center px-3.5 py-1.5 mb-6 rounded-full bg-primary/15 border border-primary/30 text-primary text-sm font-medium tracking-wide uppercase">
+                <span className="inline-flex items-center px-3.5 py-1.5 mb-6 rounded-full bg-primary/15 border border-primary/30 text-primary-text text-sm font-medium tracking-wide uppercase">
                   Imagiologia médica
                 </span>
                 <h3 className="text-3xl md:text-4xl font-display font-semibold mb-4">ReportMate</h3>

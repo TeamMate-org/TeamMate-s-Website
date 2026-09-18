@@ -118,7 +118,7 @@ export default function Sobre() {
                   </div>
                   <div className="px-2 pt-6 pb-2">
                     <h3 className="text-2xl font-display font-semibold">{founder.name}</h3>
-                    <p className="text-primary font-medium mt-1 mb-3">{founder.role}</p>
+                    <p className="text-primary-text font-medium mt-1 mb-3">{founder.role}</p>
                     <p className="text-gray-400 leading-relaxed">{founder.desc}</p>
                   </div>
                 </article>
@@ -130,7 +130,7 @@ export default function Sobre() {
         {/* SECÇÃO 3 — HISTÓRIA */}
         <section className="py-24 px-6" ref={storyRef}>
           <div className={`max-w-3xl mx-auto text-center ${storyInView ? 'reveal-up' : 'opacity-0'}`}>
-            <p className="text-primary font-medium text-sm tracking-wide uppercase mb-3">A NOSSA HISTÓRIA</p>
+            <p className="text-primary-text font-medium text-sm tracking-wide uppercase mb-3">A NOSSA HISTÓRIA</p>
             <h2 className="text-4xl md:text-5xl font-display font-semibold leading-tight mb-8">
               Como começámos
             </h2>
@@ -161,7 +161,7 @@ export default function Sobre() {
                           href={n.link.href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className={`group/link inline-flex items-center gap-1 text-sm md:text-base font-medium text-white hover:text-primary transition-colors duration-200 ${focusRing} rounded`}
+                          className={`group/link inline-flex items-center gap-1 text-sm md:text-base font-medium text-white hover:text-primary-text transition-colors duration-200 ${focusRing} rounded`}
                         >
                           {n.link.label}
                           <ArrowUpRight className="w-4 h-4 transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" aria-hidden="true" />

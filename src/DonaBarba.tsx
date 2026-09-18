@@ -28,6 +28,10 @@ export default function DonaBarba() {
   const { ref: resultRef, inView: resultInView } = useInView();
   const { ref: testimonialRef, inView: testimonialInView } = useInView();
 
+  useEffect(() => {
+    document.title = 'DonaBarba | TeamMate';
+  }, []);
+
   return (
     <div className="donabarba-theme min-h-screen bg-[#0a0a0a] text-white selection:bg-primary/30 font-sans">
       <div className="teammate-btn-override">
@@ -74,8 +78,8 @@ export default function DonaBarba() {
             </div>
             
             <div className="relative w-full aspect-[4/3] lg:aspect-auto lg:h-full animate-slide-up-fade" style={{ animationDelay: '300ms' }}>
-              <img src="/images/DonaBarbaHeroBig.webp" alt="Software DonaBarba Big" className="absolute bottom-0 right-0 w-[85%] h-auto border border-white/5 rounded-2xl shadow-2xl z-10 donabarba-float-reverse" />
-              <img src="/images/DonaBarbaHeroSmall.webp" alt="Software DonaBarba Small" className="absolute top-0 left-0 w-[50%] h-auto border border-white/5 rounded-2xl shadow-2xl z-20 donabarba-float" />
+              <img src="/images/DonaBarbaHeroBig.webp" alt="Painel de gestão da DonaBarba, com as marcações do dia organizadas por barbeiro" className="absolute bottom-0 right-0 w-[85%] h-auto border border-white/5 rounded-2xl shadow-2xl z-10 donabarba-float-reverse" />
+              <img src="/images/DonaBarbaHeroSmall.webp" alt="Página de marcações online da DonaBarba, com horário, localização e botão para fazer marcação" className="absolute top-0 left-0 w-[50%] h-auto border border-white/5 rounded-2xl shadow-2xl z-20 donabarba-float" />
             </div>
           </div>
         </section>
@@ -112,7 +116,7 @@ export default function DonaBarba() {
         <section className="py-24 px-6 relative" ref={challengeRef}>
           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             <div className={`lg:sticky lg:top-32 card-animate ${challengeInView ? 'is-visible' : ''}`}>
-              <p className="text-primary font-medium text-sm tracking-wide uppercase mb-3">O DESAFIO</p>
+              <p className="text-primary-text font-medium text-sm tracking-wide uppercase mb-3">O DESAFIO</p>
               <h2 className="text-4xl md:text-5xl font-display font-semibold mb-6 leading-tight">
                 Gerir uma barbearia com vários barbeiros sem um sistema é insustentável
               </h2>
@@ -142,7 +146,7 @@ export default function DonaBarba() {
         <section className="py-24 px-6 relative bg-[#0f0f0f]" ref={solutionRef}>
           <div className="max-w-7xl mx-auto">
             <div className={`text-center mb-16 ${solutionInView ? 'reveal-up' : 'opacity-0'}`}>
-              <p className="text-primary font-medium text-sm tracking-wide uppercase mb-3">A SOLUÇÃO</p>
+              <p className="text-primary-text font-medium text-sm tracking-wide uppercase mb-3">A SOLUÇÃO</p>
               <h2 className="text-4xl md:text-5xl font-display font-semibold mb-6 leading-tight max-w-3xl mx-auto">
                 Um sistema com três níveis — cliente, barbeiro e administrador
               </h2>
@@ -173,7 +177,7 @@ export default function DonaBarba() {
         <section className="py-24 px-6 relative" ref={resultRef}>
           <div className="max-w-7xl mx-auto">
             <div className={`text-center mb-16 ${resultInView ? 'reveal-up' : 'opacity-0'}`}>
-              <p className="text-primary font-medium text-sm tracking-wide uppercase mb-3">O RESULTADO</p>
+              <p className="text-primary-text font-medium text-sm tracking-wide uppercase mb-3">O RESULTADO</p>
               <h2 className="text-4xl md:text-5xl font-display font-semibold leading-tight">
                 O que mudou depois do lançamento
               </h2>

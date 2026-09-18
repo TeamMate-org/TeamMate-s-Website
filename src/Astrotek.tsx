@@ -31,6 +31,10 @@ export default function Astrotek() {
   const { ref: resultRef, inView: resultInView } = useInView();
   const { ref: testimonialRef, inView: testimonialInView } = useInView();
 
+  useEffect(() => {
+    document.title = 'Astrotek | TeamMate';
+  }, []);
+
   return (
     <div className="astrotek-theme min-h-screen bg-[#0a0a0a] text-white selection:bg-primary/30 font-sans">
       <div className="teammate-btn-override">
@@ -77,8 +81,8 @@ export default function Astrotek() {
             </div>
             
             <div className="relative w-full aspect-[4/3] lg:aspect-auto lg:h-full animate-slide-up-fade" style={{ animationDelay: '300ms' }}>
-              <img src="/images/AstrotekHeroBig.webp" alt="Software Astrotek Big" className="absolute bottom-0 right-0 w-[85%] h-auto border border-white/5 rounded-2xl shadow-2xl z-10 donabarba-float-reverse" />
-              <img src="/images/AstrotekHeroSmall.webp" alt="Software Astrotek Small" className="absolute top-0 left-0 w-[50%] h-auto border border-white/5 rounded-2xl shadow-2xl z-20 donabarba-float" />
+              <img src="/images/AstrotekHeroBig.webp" alt="Painel de gestão de reparações da Astrotek, com pedidos pendentes, em progresso e urgentes e gráfico de reparações por dia" className="absolute bottom-0 right-0 w-[85%] h-auto border border-white/5 rounded-2xl shadow-2xl z-10 donabarba-float-reverse" />
+              <img src="/images/AstrotekHeroSmall.webp" alt="Formulário online de pedido de reparação da Astrotek, com passos de detalhes, orçamento, agendamento e confirmação" className="absolute top-0 left-0 w-[50%] h-auto border border-white/5 rounded-2xl shadow-2xl z-20 donabarba-float" />
             </div>
           </div>
         </section>

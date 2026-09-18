@@ -139,7 +139,7 @@ export const Navbar = ({ onOpenModal, hideNavLinks, ctaText = 'Agendar Conversa'
                         href={link.href}
                         onClick={(e) => handleNav(e, link.href)}
                         aria-current={isActive ? 'page' : undefined}
-                        className={`text-base font-display font-medium transition-colors duration-200 cursor-pointer ${focusRing} rounded ${isActive ? 'text-primary' : 'text-gray-400 hover:text-white'}`}
+                        className={`text-base font-display font-medium transition-colors duration-200 cursor-pointer ${focusRing} rounded ${isActive ? 'text-primary-text' : 'text-gray-400 hover:text-white'}`}
                       >
                         {link.label}
                       </a>
@@ -213,7 +213,7 @@ export const Navbar = ({ onOpenModal, hideNavLinks, ctaText = 'Agendar Conversa'
               role="menuitem"
               onClick={(e) => handleNav(e, link.href)}
               aria-current={isLinkActive(link.href) ? 'page' : undefined}
-              className={`text-lg font-display font-medium ${isLinkActive(link.href) ? 'text-primary' : 'text-gray-300 hover:text-white'} py-3 border-b border-white/5 transition-colors duration-200 cursor-pointer ${focusRing} rounded`}
+              className={`text-lg font-display font-medium ${isLinkActive(link.href) ? 'text-primary-text' : 'text-gray-300 hover:text-white'} py-3 border-b border-white/5 transition-colors duration-200 cursor-pointer ${focusRing} rounded`}
             >
               {link.label}
             </a>
@@ -612,7 +612,7 @@ const Features = () => {
     <section className="py-24 px-6 relative" ref={ref}>
       <div className="max-w-7xl mx-auto">
         <div className={`mb-16 ${inView ? 'reveal-up' : 'opacity-0'}`}>
-          <p className="text-primary font-medium text-sm tracking-wide uppercase mb-3">PRINCIPAIS BENEFÍCIOS</p>
+          <p className="text-primary-text font-medium text-sm tracking-wide uppercase mb-3">PRINCIPAIS BENEFÍCIOS</p>
           <h2 className="text-4xl md:text-5xl font-display font-semibold max-w-2xl leading-tight">
             Menos esforço. Mais resultado. Sempre
           </h2>
@@ -766,7 +766,7 @@ const BeforeAfter = () => {
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className={`mb-16 ${inView ? 'reveal-up' : 'opacity-0'}`}>
-          <p className="text-primary font-medium text-sm tracking-wide uppercase mb-3">ANTES vs. DEPOIS</p>
+          <p className="text-primary-text font-medium text-sm tracking-wide uppercase mb-3">ANTES vs. DEPOIS</p>
           <h2 className="text-4xl md:text-5xl font-display font-semibold max-w-2xl leading-tight">
             A mesma empresa. Sem o trabalho desnecessário
           </h2>
@@ -787,7 +787,7 @@ const BeforeAfter = () => {
 
             <div className="hidden md:flex px-8 py-6 items-center gap-3">
               <span className="flex items-center justify-center w-7 h-7 rounded-full bg-primary/15 border border-primary/30 text-primary font-bold text-sm">✓</span>
-              <span className="text-sm font-semibold text-primary uppercase tracking-wider">Com a TeamMate</span>
+              <span className="text-sm font-semibold text-primary-text uppercase tracking-wider">Com a TeamMate</span>
             </div>
           </div>
 
@@ -818,7 +818,7 @@ const BeforeAfter = () => {
           <div className="md:hidden border-t border-white/10">
             <div className="px-4 md:px-8 py-6 flex items-center gap-3">
               <span className="flex items-center justify-center w-7 h-7 rounded-full bg-primary/15 border border-primary/30 text-primary font-bold text-sm">✓</span>
-              <span className="text-sm font-semibold text-primary uppercase tracking-wider">Com a TeamMate</span>
+              <span className="text-sm font-semibold text-primary-text uppercase tracking-wider">Com a TeamMate</span>
             </div>
             {beforeAfterRows.map((row, i) => (
               <div key={i} className="border-t border-white/5 px-4 md:px-8 py-6 flex items-start gap-4 hover:bg-white/[0.02] transition-colors duration-300">
@@ -851,7 +851,7 @@ const About = () => {
         </div>
 
         <div>
-          <span className="inline-flex items-center gap-2 px-3.5 py-1.5 mb-6 rounded-full bg-primary/15 border border-primary/30 text-primary text-sm font-medium tracking-wide uppercase">
+          <span className="inline-flex items-center gap-2 px-3.5 py-1.5 mb-6 rounded-full bg-primary/15 border border-primary/30 text-primary-text text-sm font-medium tracking-wide uppercase">
             <Sparkles className="w-4 h-4" aria-hidden="true" />
             O nosso produto principal
           </span>
@@ -898,6 +898,7 @@ const About = () => {
 /* ─── Case Study Card (shared: homepage + /portfolio) ─── */
 export type CaseStudy = {
   title: string;
+  tag: string;
   description: string;
   image: string;
   imageAlt: string;
@@ -909,6 +910,7 @@ export type CaseStudy = {
 export const caseStudies: CaseStudy[] = [
   {
     title: 'DonaBarba',
+    tag: 'Sistema de marcações e gestão de barbearia',
     description: 'Sistema completo de marcações online, gestão de barbeiros, stock e faturamento — para que a equipa se foque nos clientes.',
     image: '/images/DonaBarba-logo.png',
     imageAlt: 'Logo DonaBarba',
@@ -917,7 +919,8 @@ export const caseStudies: CaseStudy[] = [
     invertLogo: true,
   },
   {
-    title: 'Software Gestão Astrotek',
+    title: 'Astrotek',
+    tag: 'Sistema de gestão de reparações',
     description: 'Sistema centralizado para gestão de pedidos de reparação, stock e faturamento, eliminando processos manuais.',
     image: '/images/Astrotek-logo.png',
     imageAlt: 'Logo Astrotek',
@@ -944,7 +947,8 @@ export const CaseStudyCard: React.FC<CaseStudyCardProps> = ({ study, ctaLabel, i
       />
     </div>
     <div className="p-8 flex flex-col flex-1">
-      <h3 className="text-2xl font-display font-semibold mb-3">{study.title}</h3>
+      <h3 className="text-2xl font-display font-semibold mb-1.5">{study.title}</h3>
+      <p className="text-sm font-medium text-primary-text mb-4">{study.tag}</p>
       <p className="text-gray-400 leading-relaxed mb-6 flex-1">
         {study.description}
       </p>
@@ -962,9 +966,9 @@ const Portfolio = () => {
     <section id="portfolio" className="py-24 px-6 relative" ref={ref}>
       <div className="max-w-7xl mx-auto">
         <div className={`mb-16 ${inView ? 'reveal-up' : 'opacity-0'}`}>
-          <p className="text-primary font-medium text-sm tracking-wide uppercase mb-3">PORTFOLIO</p>
+          <p className="text-primary-text font-medium text-sm tracking-wide uppercase mb-3">PORTFÓLIO</p>
           <h2 className="text-4xl md:text-5xl font-display font-semibold max-w-2xl leading-tight">
-            Casos de Estudo
+            Projetos à medida
           </h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -1033,7 +1037,7 @@ const Products = () => {
       <div className="max-w-7xl mx-auto">
         {/* Section header */}
         <div className={`mb-16 ${prodInView ? 'reveal-up' : 'opacity-0'}`}>
-          <p className="text-primary font-medium text-sm tracking-wide uppercase mb-3">AS NOSSAS SOLUÇÕES</p>
+          <p className="text-primary-text font-medium text-sm tracking-wide uppercase mb-3">AS NOSSAS SOLUÇÕES</p>
           <h2 className="text-4xl md:text-5xl font-display font-semibold max-w-3xl leading-tight mb-6">
             Automatizamos onde a tua empresa mais precisa
           </h2>
@@ -1151,7 +1155,7 @@ export const Testimonials = () => {
               <TestimonialLogo testimonial={t} />
               <figcaption className="space-y-2">
                 <h3 className="text-lg font-display font-semibold text-white">{t.name}</h3>
-                <p className="text-primary text-xs font-medium uppercase tracking-wider">{t.role}</p>
+                <p className="text-primary-text text-xs font-medium uppercase tracking-wider">{t.role}</p>
               </figcaption>
               <blockquote className="text-gray-300 text-base leading-relaxed italic">
                 &ldquo;{t.quote}&rdquo;
@@ -1225,7 +1229,7 @@ const Statistics = () => {
     <section className="py-24 px-6 bg-surface/30">
       <div className="max-w-7xl mx-auto">
         <div className={`text-center mb-16 ${started ? 'reveal-up' : 'opacity-0'}`}>
-          <p className="text-primary font-medium text-sm tracking-wide uppercase mb-3">Estatísticas</p>
+          <p className="text-primary-text font-medium text-sm tracking-wide uppercase mb-3">Estatísticas</p>
           <h2 className="text-4xl md:text-5xl font-display font-semibold max-w-2xl mx-auto leading-tight">
             Resultados que falam por si
           </h2>
@@ -1281,7 +1285,7 @@ const Process = () => {
     <section id="process" className="py-24 px-6 overflow-hidden" ref={viewRef}>
       <div className="max-w-7xl mx-auto">
         <div className={`text-center mb-20 ${inView ? 'reveal-up' : 'opacity-0'}`}>
-          <p className="text-primary font-medium text-sm tracking-wide uppercase mb-3">O NOSSO PROCESSO</p>
+          <p className="text-primary-text font-medium text-sm tracking-wide uppercase mb-3">O NOSSO PROCESSO</p>
           <h2 className="text-4xl md:text-5xl font-display font-semibold max-w-2xl mx-auto leading-tight">
             Do problema à solução, em 4 passos
           </h2>
@@ -1389,7 +1393,7 @@ const FAQ = () => {
     <section id="faq" className="py-24 px-6 bg-surface/30" ref={ref}>
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16">
         <div className={`lg:col-span-5 ${inView ? 'reveal-up' : 'opacity-0'}`}>
-          <p className="text-primary font-medium text-sm tracking-wide uppercase mb-3">FAQs</p>
+          <p className="text-primary-text font-medium text-sm tracking-wide uppercase mb-3">FAQs</p>
           <h2 className="text-4xl md:text-5xl font-display font-semibold mb-6 leading-tight">Perguntas Frequentes</h2>
           <p className="text-gray-400 text-lg mb-10 leading-relaxed">
             Tens dúvidas sobre como a IA pode transformar o teu negócio? Encontre as respostas abaixo ou contacta-nos diretamente.

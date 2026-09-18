@@ -197,7 +197,7 @@ export function LeadModal({ isOpen, onClose }: LeadModalProps) {
                                 transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                                 className="flex flex-col h-full"
                             >
-                                <div className="mb-2 text-sm text-primary font-medium tracking-wide uppercase">Passo 1 de 2</div>
+                                <div className="mb-2 text-sm text-primary-text font-medium tracking-wide uppercase">Passo 1 de 2</div>
                                 <h3 className="text-3xl font-display font-semibold mb-3">Vamos conhecer-nos</h3>
                                 <p className="text-gray-400 mb-8 leading-relaxed">Preenche os teus dados e a nossa equipa entra em contacto contigo brevemente — sem compromisso.</p>
 
@@ -276,7 +276,7 @@ export function LeadModal({ isOpen, onClose }: LeadModalProps) {
                                 transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                                 className="flex flex-col h-full"
                             >
-                                <div className="mb-2 text-sm text-primary font-medium tracking-wide uppercase">Passo 2 de 2</div>
+                                <div className="mb-2 text-sm text-primary-text font-medium tracking-wide uppercase">Passo 2 de 2</div>
                                 <h3 className="text-3xl font-display font-semibold mb-3">Fala-nos do teu negócio</h3>
                                 <p className="text-gray-400 mb-8 leading-relaxed">Estas informações ajudam-nos a preparar a conversa para que seja o mais útil possível para ti.</p>
 

@@ -143,7 +143,7 @@ const Problema = () => {
     <section className="py-24 px-6" style={{ background: '#0d1820' }} ref={ref}>
       <div className="max-w-4xl mx-auto">
         <div className={`mb-12 text-center ${inView ? 'reveal-up' : 'opacity-0'}`}>
-          <p className="text-primary font-medium text-sm tracking-wide uppercase mb-3">Identificação da Dor</p>
+          <p className="text-primary-text font-medium text-sm tracking-wide uppercase mb-3">Identificação da Dor</p>
           <h2 className="text-3xl md:text-4xl font-display font-semibold leading-tight">
             Reconheces alguma destas situações?
           </h2>
@@ -209,7 +209,7 @@ const Solucao = () => {
     <section className="py-24 px-6 bg-surface/30" ref={ref}>
       <div className="max-w-5xl mx-auto">
         <div className={`mb-6 text-center ${inView ? 'reveal-up' : 'opacity-0'}`}>
-          <p className="text-primary font-medium text-sm tracking-wide uppercase mb-3">O que recebes</p>
+          <p className="text-primary-text font-medium text-sm tracking-wide uppercase mb-3">O que recebes</p>
           <h2 className="text-3xl md:text-4xl font-display font-semibold leading-tight mb-6">
             O que é a Auditoria Gratuita de IA?
           </h2>
@@ -281,7 +281,7 @@ const Processo = () => {
     <section className="py-24 px-6" ref={ref}>
       <div className="max-w-5xl mx-auto">
         <div className={`mb-14 text-center ${inView ? 'reveal-up' : 'opacity-0'}`}>
-          <p className="text-primary font-medium text-sm tracking-wide uppercase mb-3">Passo a passo</p>
+          <p className="text-primary-text font-medium text-sm tracking-wide uppercase mb-3">Passo a passo</p>
           <h2 className="text-3xl md:text-4xl font-display font-semibold leading-tight">
             Como funciona, passo a passo
           </h2>
@@ -374,7 +374,7 @@ const ProvaSocial = () => {
     <section className="py-24 px-6 bg-surface/30" ref={ref}>
       <div className="max-w-5xl mx-auto">
         <div className={`mb-14 text-center ${inView ? 'reveal-up' : 'opacity-0'}`}>
-          <p className="text-primary font-medium text-sm tracking-wide uppercase mb-3">Resultados reais</p>
+          <p className="text-primary-text font-medium text-sm tracking-wide uppercase mb-3">Resultados reais</p>
           <h2 className="text-3xl md:text-4xl font-display font-semibold leading-tight">
             O que os nossos clientes conseguiram
           </h2>
@@ -443,7 +443,7 @@ const AuditoriaFAQ = () => {
     <section className="py-24 px-6" ref={ref}>
       <div className="max-w-3xl mx-auto">
         <div className={`mb-12 text-center ${inView ? 'reveal-up' : 'opacity-0'}`}>
-          <p className="text-primary font-medium text-sm tracking-wide uppercase mb-3">FAQs</p>
+          <p className="text-primary-text font-medium text-sm tracking-wide uppercase mb-3">FAQs</p>
           <h2 className="text-3xl md:text-4xl font-display font-semibold leading-tight">
             Perguntas frequentes
           </h2>
@@ -567,7 +567,7 @@ const AuditoriaForm = React.forwardRef<HTMLElement>((_, ref) => {
 
       <div className="max-w-xl mx-auto relative z-10">
         <div className={`mb-10 text-center ${inView ? 'reveal-up' : 'opacity-0'}`}>
-          <p className="text-primary font-medium text-sm tracking-wide uppercase mb-3">CTA Final</p>
+          <p className="text-primary-text font-medium text-sm tracking-wide uppercase mb-3">CTA Final</p>
           <h2 className="text-3xl md:text-4xl font-display font-semibold leading-tight mb-4">
             Pede a tua auditoria gratuita agora
           </h2>
