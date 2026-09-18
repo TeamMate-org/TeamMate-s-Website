@@ -57,9 +57,15 @@ export const Navbar = ({ onOpenModal, hideNavLinks, ctaText = 'Agendar Conversa'
     { label: 'Serviços', href: '/#cases' },
     { label: 'Processo', href: '/#process' },
     { label: 'Portfólio', href: '/portfolio' },
+    { label: 'Sobre', href: '/sobre' },
     { label: 'Testemunhos', href: '/#testimonials' },
     { label: 'Contacto', href: '/contactos' },
   ];
+
+  const isLinkActive = (href: string) =>
+    href.startsWith('/#')
+      ? activeSection === href.substring(2)
+      : href === window.location.pathname;
 
   useEffect(() => {
     if (window.location.pathname !== '/') return;
@@ -111,11 +117,11 @@ export const Navbar = ({ onOpenModal, hideNavLinks, ctaText = 'Agendar Conversa'
           aria-label="Navegação principal"
         >
           <div className="px-6 h-[72px] flex items-center justify-between">
-            {/* TeaMate Logo */}
-            <a href="/" aria-label="TeaMate — página inicial" className={`flex items-center ${focusRing} rounded`}>
+            {/* TeamMate Logo */}
+            <a href="/" aria-label="TeamMate — página inicial" className={`flex items-center ${focusRing} rounded`}>
               <img
                 src="/images/Logo TeamMate.svg"
-                alt="TeaMate"
+                alt="TeamMate"
                 className="h-14 md:h-16 w-auto"
                 draggable={false}
               />
@@ -123,18 +129,16 @@ export const Navbar = ({ onOpenModal, hideNavLinks, ctaText = 'Agendar Conversa'
 
             {/* Desktop nav links — centred */}
             {!hideNavLinks && (
-              <ul className="hidden md:flex items-center gap-8" role="list">
+              <ul className="hidden lg:flex items-center gap-6 xl:gap-8" role="list">
                 {navLinks.map((link) => {
-                  const targetId = link.href.startsWith('/#') ? link.href.substring(2) : '';
-                  const isActive = targetId !== ''
-                    ? activeSection === targetId
-                    : link.href === '/portfolio' && window.location.pathname === '/portfolio';
+                  const isActive = isLinkActive(link.href);
 
                   return (
                     <li key={link.label}>
                       <a
                         href={link.href}
                         onClick={(e) => handleNav(e, link.href)}
+                        aria-current={isActive ? 'page' : undefined}
                         className={`text-base font-display font-medium transition-colors duration-200 cursor-pointer ${focusRing} rounded ${isActive ? 'text-primary' : 'text-gray-400 hover:text-white'}`}
                       >
                         {link.label}
@@ -146,7 +150,7 @@ export const Navbar = ({ onOpenModal, hideNavLinks, ctaText = 'Agendar Conversa'
             )}
 
             {/* Desktop CTA */}
-            <div className="hidden md:flex items-center">
+            <div className="hidden md:flex items-center md:ml-auto md:mr-3 lg:ml-0 lg:mr-0">
               <div className="relative group">
                 <div className="absolute -inset-1 bg-gradient-to-r from-blue-600/50 to-blue-400/50 rounded-xl blur opacity-25 group-hover:opacity-60 transition duration-500" aria-hidden="true"></div>
                 <button
@@ -160,7 +164,7 @@ export const Navbar = ({ onOpenModal, hideNavLinks, ctaText = 'Agendar Conversa'
 
             {/* Mobile hamburger */}
             <button
-              className={`flex items-center justify-center w-10 h-10 md:hidden text-white cursor-pointer ${focusRing} rounded`}
+              className={`flex items-center justify-center w-10 h-10 lg:hidden text-white cursor-pointer ${focusRing} rounded`}
               onClick={() => setIsOpen(!isOpen)}
               aria-expanded={isOpen}
               aria-controls="mobile-menu"
@@ -198,7 +202,7 @@ export const Navbar = ({ onOpenModal, hideNavLinks, ctaText = 'Agendar Conversa'
       {isOpen && (
         <div
           id="mobile-menu"
-          className="md:hidden fixed inset-0 z-[49] bg-[#0a0a0a] pt-[84px] px-6 pb-6 flex flex-col gap-4 mobile-menu-enter"
+          className="lg:hidden fixed inset-0 z-[49] bg-[#0a0a0a] pt-[84px] px-6 pb-6 flex flex-col gap-4 mobile-menu-enter"
           role="menu"
         >
           {/* Mobile nav links */}
@@ -208,7 +212,8 @@ export const Navbar = ({ onOpenModal, hideNavLinks, ctaText = 'Agendar Conversa'
               href={link.href}
               role="menuitem"
               onClick={(e) => handleNav(e, link.href)}
-              className={`text-lg font-display font-medium text-gray-300 hover:text-white py-3 border-b border-white/5 transition-colors duration-200 cursor-pointer ${focusRing} rounded`}
+              aria-current={isLinkActive(link.href) ? 'page' : undefined}
+              className={`text-lg font-display font-medium ${isLinkActive(link.href) ? 'text-primary' : 'text-gray-300 hover:text-white'} py-3 border-b border-white/5 transition-colors duration-200 cursor-pointer ${focusRing} rounded`}
             >
               {link.label}
             </a>
@@ -1506,6 +1511,7 @@ export const Footer = () => {
         { label: 'Serviços', href: '/#cases' },
         { label: 'Processo', href: '/#process' },
         { label: 'Portfólio', href: '/portfolio' },
+        { label: 'Sobre', href: '/sobre' },
         { label: 'Testemunhos', href: '/#testimonials' },
       ],
     },
